@@ -24,9 +24,15 @@ from pathlib import Path
 def main():
     """Main function to consolidate eplusout.csv files."""
     # Check command line arguments
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 2 or sys.argv[1] in ['--help', '-h', 'help']:
         print("Usage: python consolidate_eplusout.py <path_to_folder_containing_subfolders>")
-        sys.exit(1)
+        print("\nDescription:")
+        print("  Consolidates EnergyPlus output files (eplusout.csv) from multiple subfolders")
+        print("  into a single AllResults.csv file.")
+        print("\nArguments:")
+        print("  path_to_folder_containing_subfolders  Path to the parent folder containing subfolders")
+        print("                                         with eplusout.csv files")
+        sys.exit(0 if sys.argv[1] in ['--help', '-h', 'help'] else 1)
     
     parent_folder = sys.argv[1]
     
